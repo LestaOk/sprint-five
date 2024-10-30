@@ -107,7 +107,7 @@ func (r Running) Calories() float64 {
 // Это переопределенный метод TrainingInfo() из Training.
 func (r Running) TrainingInfo() InfoMessage {
 	// вставьте ваш код ниже
-	r.Training.TrainingInfo()
+	return r.Training.TrainingInfo()
 }
 
 // Константы для расчета потраченных килокалорий при ходьбе.
@@ -131,9 +131,9 @@ type Walking struct {
 // Это переопределенный метод Calories() из Training.
 func (w Walking) Calories() float64 {
 	// вставьте ваш код ниже
-	speedMetrPerSecond := w.meanSpeed() * kmhInMsec
-	heightInM := w.Height / cmInM
-	return ((CaloriesWeightMultiplier * w.Weight + (math.Pow(speedMetrPerSecond) / heightInM) * CaloriesSpeedHeightMultiplier * w.Weight) * float64(w.Duration) * MinInHours)
+	speedMetrPerSecond := w.meanSpeed() * KmHInMsec
+	heightInM := w.Height / CmInM
+	return ((CaloriesWeightMultiplier * w.Weight + (math.Pow(speedMetrPerSecond, 2) / heightInM) * CaloriesSpeedHeightMultiplier * w.Weight) * float64(w.Duration) * MinInHours)
 }
 
 // TrainingInfo возвращает структуру InfoMessage с информацией о проведенной тренировке.
